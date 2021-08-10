@@ -1,7 +1,6 @@
 from django.contrib.auth import get_user_model
+from django.core.validators import MinValueValidator
 from django.db import models
-from django.utils.translation import gettext_lazy as _
-
 
 User = get_user_model()
 
@@ -52,4 +51,43 @@ class Recipe(models.Model):
 
 
 class Ingredient(models.Model):
-    title = models.CharField('Ингридиент', max_length=100)
+    title = models.CharField(
+        'Название ингридиента',
+        max_length=100
+    )
+    dimension = models.CharField(
+        'Еденица измерения',
+        max_length=10
+    )
+
+    class Meta:
+        verbose_name = 'Ингридиент'
+        verbose_name_plural = 'Ингридиенты'
+        constraints = [
+            models.UniqueConstraint(
+                fields=['title', 'dimension'],
+                name='unique_ingredient'
+            )
+        ]
+
+    def __str__(self):
+        return self.title
+
+
+class IngredientItem(models.Model):
+    recipe = models.ForeignKey(
+        Recipe,
+        on_delete=models.CASCADE,
+        related_name='ingrediens',
+        verbose_name='Ингредиенты'
+    )
+    quantity = models.PositiveSmallIntegerField(
+        validators=(MinValueValidator(1),)
+    )
+
+    class Meta:
+        vaerbose_name = 'Ингредиент связь'
+        vaerbose_name_plural = 'Ингредиент связи'
+
+    def __str__(self):
+        return self.ingredient.title
