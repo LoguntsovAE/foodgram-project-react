@@ -1,6 +1,5 @@
 from django.contrib.auth import get_user_model
 from django.db import models
-,
 from django.utils.translation import gettext_lazy as _
 
 
@@ -39,7 +38,7 @@ class Recipe(models.Model):
         'Время приготовления'
     )
     pub_date = models.DateTimeField(
-        'Дата публикации', 
+        'Дата публикации',
         auto_now_add=True,
     )
 
@@ -47,7 +46,7 @@ class Recipe(models.Model):
         ordering = ('-pub_date')
         verbose_name = 'Рецепт'
         verbose_name_plural = 'Рецепты'
-    
+
     def __str__(self):
         return self.title
 
