@@ -10,13 +10,13 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .filters import IngredientTitleFilter, RecipeFilter
-from .models import (IngredientItem, Recipe, ShoppingList, Tag,
-                     Follow, Favorite, Ingredient)
+from .models import (Favorite, Follow, Ingredient, IngredientItem, Recipe,
+                     ShoppingList, Tag)
 from .permissions import IsAdminOrAuthorOrReadOnly
 from .serializers import (FavoriteSerializer, FollowSerializer,
-                          IngredientSerializer, ShoppingListSerializer,
-                          RecipeReadSerializer, RecipeSerializer,
-                          RecipeSubscriptionSerializer, ShowFollowsSerializer,
+                          IngredientSerializer, RecipeReadSerializer,
+                          RecipeSerializer, RecipeSubscriptionSerializer,
+                          ShoppingListSerializer, ShowFollowsSerializer,
                           TagSerializer)
 
 User = get_user_model()

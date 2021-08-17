@@ -1,11 +1,10 @@
-  
 from django.contrib.auth import get_user_model
 from django.shortcuts import get_object_or_404
 from drf_extra_fields.fields import Base64ImageField
 from rest_framework import serializers
 
-from .models import Favorite, Follow, Ingredient, IngredientItem, Recipe, ShoppingList, Tag
-
+from .models import (Favorite, Follow, Ingredient, IngredientItem, Recipe,
+                     ShoppingList, Tag)
 
 User = get_user_model
 
@@ -71,7 +70,7 @@ class FavoriteSerializer(serializers.ModelSerializer):
         user = validated_data['user']
         recipe = validated_data['recipe']
         obj, created = Favorite.objects.get_or_create(user=user,
-                                                       recipe=recipe)
+                                                      recipe=recipe)
         if not created:
             raise serializers.ValidationError(
                 {
@@ -92,7 +91,8 @@ class ShoppingListSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         user = validated_data['user']
         recipe = validated_data['recipe']
-        obj, created = ShoppingList.objects.get_or_create(user=user, recipe=recipe)
+        obj, created = ShoppingList.objects.get_or_create(user=user,
+                                                          recipe=recipe)
         if not created:
             raise serializers.ValidationError(
                 {"message": "Вы уже добавили рецепт в корзину"}
@@ -137,7 +137,7 @@ class RecipeSerializer(serializers.ModelSerializer):
     liked = serializers.SerializerMethodField()
     in_shopping_list = serializers.SerializerMethodField()
     tag = serializers.PrimaryKeyRelatedField(queryset=Tag.objects.all(),
-                                              many=True)
+                                             many=True)
     author = CustomUserSerializer(read_only=True)
     image = Base64ImageField(max_length=None, use_url=True)
     ingredients = IngredientItemCreate(many=True)
@@ -160,7 +160,8 @@ class RecipeSerializer(serializers.ModelSerializer):
         request = self.context.get('request')
         if request is None or request.user.is_anonymous:
             return False
-        return ShoppingList.objects.filter(user=request.user, recipe=obj).exists()
+        return ShoppingList.objects.filter(user=request.user,
+                                           recipe=obj).exists()
 
     def create(self, validated_data):
         request = self.context.get('request')
@@ -177,8 +178,8 @@ class RecipeSerializer(serializers.ModelSerializer):
             ingredient_instance = get_object_or_404(Ingredient,
                                                     pk=ingredient.get('id'))
             IngredientItem.objects.create(recipe=recipe,
-                                               ingredient=ingredient_instance,
-                                               amount=amount)
+                                          ingredient=ingredient_instance,
+                                          amount=amount)
         recipe.save()
         return recipe
 
@@ -202,8 +203,7 @@ class RecipeSerializer(serializers.ModelSerializer):
             ).exists():
                 ingredients_instance.remove(
                     IngredientItem.objects.get(id=ingredient_id,
-                                                    amount=amount
-                                                    ).ingredient)
+                                               amount=amount).ingredient)
             else:
                 IngredientItem.objects.get_or_create(
                     recipe=instance,

@@ -1,7 +1,6 @@
+from colorfield.fields import ColorField
 from django.contrib.auth import get_user_model
 from django.db import models
-
-from colorfield.fields import ColorField
 
 User = get_user_model()
 
@@ -67,7 +66,7 @@ class Recipe(models.Model):
     )
     image = models.ImageField(
         'Картинка',
-        help_text = 'Загрузить изображение'
+        help_text='Загрузить изображение'
     )
     description = models.TextField(
         'Описание',
@@ -76,7 +75,6 @@ class Recipe(models.Model):
     ingredient = models.ManyToManyField(
         Ingredient,
         through='IngredientItem',
-        # through_fields=('recipe', 'ingredient'),
     )
     tag = models.ManyToManyField(
         Tag,
@@ -184,5 +182,5 @@ class Follow(models.Model):
 
     def __str__(self):
         return (
-            f'Подписчик: {self.user.username} подписан на автора: {self.author.title}'
+            f'Подписчик:{self.user.username} подписан на {self.author.title}'
         )

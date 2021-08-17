@@ -9,7 +9,7 @@ class IngredientTitleFilter(filters.FilterSet):
     class Meta:
         model = Ingredient
         fields = ('title', 'dimension')
-    
+
 
 class RecipeFilter(filters.FilterSet):
     tags = filters.AllValuesMultipleFilter(field_name='tag__slug')

@@ -5,7 +5,6 @@ from .views import (FavoriteView, FollowView, IngredientViewSet,
                     RecipesViewSet, ShoppingCartView, TagsViewSet,
                     download_shopping_cart, show_follows)
 
-
 router = DefaultRouter()
 router.register('tags', TagsViewSet, basename='tags')
 router.register('recipes', RecipesViewSet, basename='recipes')

@@ -1,8 +1,7 @@
 from django.contrib import admin
 from import_export.admin import ImportMixin
 
-from .models import (Favorite ,Follow, Ingredient,
-                     IngredientItem, Recipe, Tag)
+from .models import Favorite, Follow, Ingredient, IngredientItem, Recipe, Tag
 
 
 @admin.register(Favorite)
@@ -37,4 +36,3 @@ class TagAdmin(admin.ModelAdmin):
 @admin.register(Follow)
 class FollowAdmin(admin.ModelAdmin):
     list_display = ('user', 'author')
-
