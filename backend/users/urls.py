@@ -1,6 +1,7 @@
-from django.urls import path
-from . import views
+
+from django.urls import include, path, re_path
 
 urlpatterns = [
-    path('signup/', views.SignUp.as_view(), name='signup'),
+    path('', include('djoser.urls')),
+    re_path(r'^auth/', include('djoser.urls.authtoken')),
 ]

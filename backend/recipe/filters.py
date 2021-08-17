@@ -1,20 +1,19 @@
-from django.db.models import fields
 import django_filters as filters
 
 from .models import Ingredient, Recipe
 
 
 class IngredientTitleFilter(filters.FilterSet):
-    name = filters.CharFilter(field_name='title', lookup_expr='istartwith')
+    title = filters.CharFilter(field_name='title', lookup_expr='istartswith')
 
     class Meta:
         model = Ingredient
-        fields = ('name', 'dimension')
+        fields = ('title', 'dimension')
     
 
 class RecipeFilter(filters.FilterSet):
-    tags = filters.AllValuesMultipleFilter(field_name='tags__slug')
+    tags = filters.AllValuesMultipleFilter(field_name='tag__slug')
 
     class Meta:
         model = Recipe
-        fields = ('author', 'tags')
+        fields = ('author', 'tag')

@@ -1,42 +1,40 @@
 from django.contrib import admin
+from import_export.admin import ImportMixin
 
-from .models import Follow, Ingredient, IngredientItem, Recipe, Tag
+from .models import (Favorite ,Follow, Ingredient,
+                     IngredientItem, Recipe, Tag)
 
 
-class IngredientInLine(admin.TabularInline):
-    model = IngredientItem
-    fields = ['ingredient' 'quantity']
+@admin.register(Favorite)
+class FavoriteAdmin(admin.ModelAdmin):
+    list_display = ('pk', 'recipe', 'user')
+
+
+@admin.register(IngredientItem)
+class IngredientForRecipeAdmin(admin.ModelAdmin):
+    list_display = ('pk', 'ingredient', 'recipe', 'quantity')
 
 
 @admin.register(Recipe)
 class RecipeAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'author', 'title', 'image', 'cooking_time')
-    search_fields = ('title',)
-    empty_value_display = 'empty'
-    inlines = [IngredientInLine]
+    list_display = ('pk', 'author', 'title')
+    list_filter = ('title', 'tag', 'author')
 
 
 @admin.register(Ingredient)
-class IngredientAdmin(admin.ModelAdmin):
+class IngredientAdmin(ImportMixin, admin.ModelAdmin):
     list_display = ('pk', 'title', 'dimension')
     search_fields = ('title',)
-    empty_value_display = 'empty'
+    resource_class = IngredientItem
 
 
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'title')
+    list_display = ('pk', 'title', 'colour')
     empty_value_display = 'empty'
 
 
 @admin.register(Follow)
 class FollowAdmin(admin.ModelAdmin):
     list_display = ('user', 'author')
-    empty_value_display = 'empty'
 
-
-@admin.register(IngredientItem)
-class IngredientItemAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'recipe', 'ingredient', 'quantity')
-    list_display_links = ('pk', 'recipe')
-    list_filter = ('recipe', 'ingredient')

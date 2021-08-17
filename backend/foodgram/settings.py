@@ -12,6 +12,8 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
+    'users',
+    'recipe',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -25,8 +27,6 @@ INSTALLED_APPS = [
     'import_export',
     'djoser',
     'colorfield',
-    'users',
-    'recipe',
 ]
 
 MIDDLEWARE = [
