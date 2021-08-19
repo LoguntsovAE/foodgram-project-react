@@ -9,7 +9,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .filters import RecipeFilter, SearchFilter, IngredientNameFilter
+from .filters import IngredientNameFilter, RecipeFilter
 from .models import Favorite, Ingredient, Recipe, ShoppingList, Subscribe, Tag
 from .paginators import PageNumberPaginatorModified
 from .permissions import IsAdminOrAuthorOrReadOnly
