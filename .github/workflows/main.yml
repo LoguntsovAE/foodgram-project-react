@@ -46,7 +46,7 @@ jobs:
         with:
           push: true
           context: ./backend/
-          tags: ${{ secrets.DOCKER_USERNAME }}/foodgram_diplom_backend:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/foodgram_diplom_back:latest
           
    
   deploy:
@@ -62,7 +62,7 @@ jobs:
           passphrase: ${{ secrets.PASSPHRASE }} 
           stack_file_name: docker-compose.yaml
           script: |
-            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/foodgram_diplom_backend:latest
+            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/foodgram_diplom_back:latest
             sudo docker-compose stop
             sudo docker-compose rm backend
             touch .env
