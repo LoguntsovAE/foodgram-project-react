@@ -142,11 +142,19 @@ class Favorite(models.Model):
 class ShoppingList(models.Model):
     user = models.ForeignKey(
         User,
+        verbose_name='Пользователь',
         on_delete=models.CASCADE,
+        related_name='purchases'
     )
     recipe = models.ForeignKey(
         Recipe,
+        verbose_name='Покупка',
         on_delete=models.CASCADE,
+        related_name='customers'
+    )
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name='Дата добавления'
     )
 
     class Meta:
