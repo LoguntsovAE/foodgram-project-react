@@ -8,6 +8,7 @@ class User(AbstractUser):
     email = models.EmailField(unique=True, max_length=254)
 
     class Meta:
+        ordering = ('username', )
         verbose_name = 'Пользователь'
         verbose_name_plural = 'Пользователи'
 

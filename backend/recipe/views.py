@@ -56,7 +56,7 @@ class IngredientViewSet(viewsets.ReadOnlyModelViewSet):
 def show_subscribes(request):
     user_obj = User.objects.filter(following__user=request.user)
     paginator = PageNumberPagination()
-    paginator.page_size = 6
+    paginator.page_size = 10
     result_page = paginator.paginate_queryset(user_obj, request)
     serializer = SubscribersSerializer(
         result_page,
