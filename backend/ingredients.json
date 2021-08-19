@@ -1332,7 +1332,7 @@
 {"model": "recipe.ingredient", "pk": 1351, "fields":{"name": "помидоры зеленые", "measurement_unit": "кг"}},
 {"model": "recipe.ingredient", "pk": 1352, "fields":{"name": "помидоры консервированные", "measurement_unit": "г"}},
 {"model": "recipe.ingredient", "pk": 1353, "fields":{"name": "помидоры консервированные в собственном соку", "measurement_unit": "г"}},
-{"model": "recipe.ingredient", "pk": 1354, "fields":{"name": "помидоры консервированные в собственном соку с базиликом", "measurement_unit": "г"}},
+{"model": "recipe.ingredient", "pk": 1354, "fields":{"name": "консервированные в собственном соку с базиликом", "measurement_unit": "г"}},
 {"model": "recipe.ingredient", "pk": 1355, "fields":{"name": "помидоры протертые пассата", "measurement_unit": "г"}},
 {"model": "recipe.ingredient", "pk": 1356, "fields":{"name": "помидоры соленые", "measurement_unit": "шт."}},
 {"model": "recipe.ingredient", "pk": 1357, "fields":{"name": "помидоры сушеные хлопьями", "measurement_unit": "г"}},
