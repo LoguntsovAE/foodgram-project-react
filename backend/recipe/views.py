@@ -173,9 +173,8 @@ class ShoppingListDownload(APIView):
         wishlist = []
         for item in shopping_list:
             wishlist.append(f'{item} ({shopping_list[item]["unit"]}) — '
-                            f'{shopping_list[item]["amount"]} \n')
-        wishlist.append('/n')
-        wishlist.append('FoodGram, 2021')
+                            f'{shopping_list[item]["amount"]} \n\n')
+        wishlist.append('Дипломный проект: FoodGram, 2021')
         response = HttpResponse(wishlist, 'Content-Type: application/pdf')
         response['Content-Disposition'] = 'attachment; filename="wishlist.pdf"'
         return response
