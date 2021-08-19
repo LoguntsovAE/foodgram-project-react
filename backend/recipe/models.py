@@ -5,8 +5,8 @@ User = get_user_model()
 
 
 class Tag(models.Model):
-    name = models.CharField('Название', max_length=15, unique=True)
-    color = models.CharField('Цвет', max_length=50, unique=True)
+    name = models.CharField('Название', max_length=15)
+    color = models.CharField('Цвет', max_length=50)
     slug = models.SlugField('Ссылка', unique=True)
 
     class Meta:
