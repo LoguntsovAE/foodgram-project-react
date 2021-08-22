@@ -118,11 +118,11 @@ class CreateRecipeSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         if 'ingredients' in self.initial_data:
             ingredients = validated_data.pop('ingredients')
-            for ingredient in ingredients:
-                if ingredient['amount'] <= 0:
-                    raise serializers.ValidationError(
-                        'Количество ингредиента должно быть больше нуля!'
-                    )
+            # for ingredient in ingredients:
+            #     if ingredient['amount'] <= 0:
+            #         raise serializers.ValidationError(
+            #             'Количество ингредиента должно быть больше нуля!UPDATE'
+            #         )
             instance.ingredients.clear()
             for ingredient in ingredients:
                 IngredientRecipe.objects.create(
@@ -152,7 +152,7 @@ class CreateRecipeSerializer(serializers.ModelSerializer):
         for ingredient in ingredients:
             if ingredient['amount'] <= 0:
                 raise serializers.ValidationError(
-                    'Увеличьте количество ингридиентов'
+                    'Увеличьте количество ингридиентов. UPDATE'
                 )
         return data
 
