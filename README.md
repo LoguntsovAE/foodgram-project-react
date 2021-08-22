@@ -7,7 +7,7 @@ http://84.252.129.200/
 http://loguntsovae.tk/
 
 ### Вход в админку
-Логин: admin
+Логин: admin@mail.ru
 Пароль: admin
 
 ## Описание
