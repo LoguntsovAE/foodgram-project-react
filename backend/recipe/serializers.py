@@ -1,8 +1,10 @@
 from django.contrib.auth import get_user_model
 from django.db.models import F
+
 from drf_extra_fields.fields import Base64ImageField
 from rest_framework import serializers
 from rest_framework.generics import get_object_or_404
+
 from users.serializers import UserSerializer
 
 from .models import (Favorite, Ingredient, IngredientRecipe, Recipe,
@@ -96,11 +98,6 @@ class CreateRecipeSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         ingredients = validated_data.pop('ingredients')
         tags = validated_data.pop('tags')
-        for ingredient in ingredients:
-            if ingredient['amount'] <= 0:
-                raise serializers.ValidationError(
-                    'Увеличьте количество ингридиентов'
-                )
         recipe = Recipe.objects.create(**validated_data)
         recipe.tags.set(tags)
         for ingredient in ingredients:
@@ -149,6 +146,15 @@ class CreateRecipeSerializer(serializers.ModelSerializer):
         instance.image = validated_data.get('image', instance.image)
         instance.save()
         return instance
+
+    def validate(self, data):
+        ingredients = data['ingredients']
+        for ingredient in ingredients:
+            if ingredient['amount'] <= 0:
+                raise serializers.ValidationError(
+                    'Увеличьте количество ингридиентов'
+                )
+        return data
 
     def to_representation(self, instance):
         return RecipeListSerializer(
