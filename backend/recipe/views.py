@@ -14,10 +14,11 @@ from .filters import IngredientNameFilter, RecipeFilter
 from .models import Favorite, Ingredient, Recipe, ShoppingList, Subscribe, Tag
 from .paginators import PageNumberPaginatorModified
 from .permissions import IsAdminOrAuthorOrReadOnly
-from .serializers import (CreateRecipeSerializer, FavoriteSerializer,
-                          IngredientSerializer, RecipeListSerializer,
-                          ShoppingListSerializer, SubscribersSerializer,
-                          SubscribeSerializer, TagSerializer)
+from .serializers import (
+    CreateRecipeSerializer, FavoriteSerializer, IngredientSerializer,
+    RecipeListSerializer, ShoppingListSerializer, SubscribersSerializer,
+    SubscribeSerializer, TagSerializer
+)
 
 User = get_user_model()
 

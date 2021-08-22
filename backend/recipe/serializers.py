@@ -7,8 +7,8 @@ from rest_framework.generics import get_object_or_404
 
 from users.serializers import UserSerializer
 
-from .models import (Favorite, Ingredient, IngredientRecipe, Recipe,
-                     ShoppingList, Subscribe, Tag)
+from .models import (Favorite, Ingredient, IngredientRecipe,
+                     Recipe, ShoppingList, Subscribe, Tag)
 
 User = get_user_model()
 
